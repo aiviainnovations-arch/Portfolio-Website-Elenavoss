@@ -1,144 +1,155 @@
-# Elena Voss — Photographer & Visual Storyteller
+<div align="center">
 
-An AIVA portfolio **concept**: a production-ready personal portfolio site
-for a fictional editorial photographer, built to demonstrate AIVA's
-ability to design premium, cinematic, 3D-aware creative websites — not a
-technology or SaaS site.
+# Elena Voss
 
-> Elena Voss is not a real person. This is a design/engineering showcase.
-> See `AIVA PORTFOLIO CONCEPT` in the footer of every page, and
-> `public/media-credits.md` for what the placeholder media is.
+**Photographer & Visual Storyteller. Images with a point of view.**
 
-**Stack:** React + Vite + TypeScript + Tailwind CSS + GSAP (ScrollTrigger)
-+ Three.js / React Three Fiber, deployed as a static site to GitHub Pages.
+A cinematic, 3D-aware portfolio concept for a fictional editorial photographer.
 
----
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-View%20Site-1F1D1A?style=for-the-badge)](https://aiviainnovations-arch.github.io/Portfolio-Website-Elenavoss/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-A99178?style=for-the-badge)](LICENSE)
 
-## 1. Project overview
+![React](https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-5-646CFF?logo=vite&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3-06B6D4?logo=tailwindcss&logoColor=white)
+![GSAP](https://img.shields.io/badge/GSAP-ScrollTrigger-88CE02?logo=greensock&logoColor=white)
+![Three.js](https://img.shields.io/badge/React_Three_Fiber-3D-000000?logo=threedotjs&logoColor=white)
 
-- **Hero** — a floating 3D portrait plate (React Three Fiber) that tilts
-  with the cursor and recedes into depth on scroll; falls back to a
-  static image on touch devices and when `prefers-reduced-motion` is set.
-- **Selected Work** — an asymmetrical, alternating editorial grid of 6
-  fictional projects, each opening into a **case study page**
-  (`/work/:slug`) with a full image/film sequence and a fullscreen,
-  keyboard- and swipe-navigable gallery viewer.
-- **Films** — a grid of 4 short-film placeholders with in-view preview
-  playback and a fullscreen video viewer.
-- **About / Process / Journal / Contact** — minimal, text-light sections;
-  Journal opens articles in a lightweight in-page reader.
-- Custom minimal cursor with contextual labels (`View Project`,
-  `Play Film`, `Open`, `Close` …), disabled automatically on touch
-  devices.
-- Full reduced-motion and keyboard-accessibility support throughout.
+<img src="public/images/screenshots/Screenshot%202026-10-01%20021130.png" alt="Elena Voss portfolio hero with floating 3D portrait" width="900">
 
-### Where things live
+</div>
 
-```
-public/
-  images/            ← all still images (see "Replacing images")
-  videos/             ← all film/video files (see "Replacing videos")
-  media-credits.md    ← source/license log for any real media you add
-src/
-  components/         ← ResponsiveImage, CinematicVideo, Navbar, Footer,
-                        CustomCursor, FullscreenGallery, MagneticButton
-  sections/           ← Hero, SelectedWork, Films, About, Process,
-                        Journal, Contact — one file per homepage section
-  pages/              ← Home.tsx, ProjectCase.tsx (the /work/:slug route)
-  three/HeroScene.tsx ← the only R3F canvas in the project, lazy-loaded
-  data/               ← projects.ts, films.ts, journal.ts — all content
-  styles/globals.css  ← design tokens (colors, easing) + base styles
-```
-
-Content is deliberately kept out of components and in `src/data/*.ts`, so
-adding a project or film never means touching a component.
+> **Disclaimer:** Elena Voss is not a real person. This is a design and engineering showcase by Aivia Innovations. The footer of every page is marked as a portfolio concept, and `public/media-credits.md` lists the source of the placeholder media.
 
 ---
 
-## 2. Installation
+## Table of contents
+
+- [Overview](#overview)
+- [Screenshots](#screenshots)
+- [Features](#features)
+- [Tech stack](#tech-stack)
+- [Getting started](#getting-started)
+- [Project structure](#project-structure)
+- [Customisation](#customisation)
+- [How the 3D works](#how-the-3d-works)
+- [Deploying to GitHub Pages](#deploying-to-github-pages)
+- [Media credits](#media-credits)
+- [License](#license)
+
+---
+
+## Overview
+
+A personal portfolio for an imaginary editorial photographer, designed to show how Aivia Innovations builds premium, cinematic creative websites. The palette is warm ivory, sand, taupe and charcoal, the type pairs Fraunces with Inter, and 3D is used once, in the hero, so it enhances the photography rather than competing with it.
+
+## Screenshots
+
+### Hero
+
+<p align="center">
+  <img src="public/images/screenshots/Screenshot%202026-10-01%20021130.png" alt="Hero: floating portrait plate that tilts with the cursor" width="900">
+</p>
+
+<sub>A floating 3D portrait plate that tilts with the cursor and recedes into depth on scroll.</sub>
+
+### Selected work and About
+
+<table>
+  <tr>
+    <td width="50%"><img src="public/images/screenshots/Screenshot%202026-10-01%20021136.png" alt="Selected Work section with Quiet Forms project"><br><sub><b>Selected Work</b> - alternating editorial grid of projects</sub></td>
+    <td width="50%"><img src="public/images/screenshots/Screenshot%202026-10-01%20021143.png" alt="About section: A way of seeing"><br><sub><b>About</b> - A way of seeing</sub></td>
+  </tr>
+</table>
+
+### Films and Journal
+
+<table>
+  <tr>
+    <td width="50%"><img src="public/images/screenshots/Screenshot%202026-10-01%20021148.png" alt="Films section with Silent Motion and Afternoon Light"><br><sub><b>Films</b> - short-film grid with in-view preview playback</sub></td>
+    <td width="50%"><img src="public/images/screenshots/Screenshot%202026-10-01%20021155.png" alt="Journal section with three articles"><br><sub><b>Journal</b> - articles open in a lightweight in-page reader</sub></td>
+  </tr>
+</table>
+
+### Contact
+
+<p align="center">
+  <img src="public/images/screenshots/Screenshot%202026-10-01%20021200.png" alt="Contact section: Let's make something memorable" width="900">
+</p>
+
+<sub>Enquiry form with a fully demonstrable success state, ready to connect to a real endpoint.</sub>
+
+---
+
+## Features
+
+- **3D hero:** a React Three Fiber portrait plate that floats, tilts toward the cursor and recedes on scroll, with a static image fallback on touch devices and under reduced motion
+- **Selected Work:** an asymmetrical, alternating grid of 6 fictional projects, each with a case-study page at `/work/:slug`
+- **Fullscreen gallery:** keyboard- and swipe-navigable viewer for images and films
+- **Films:** 4 short-film placeholders with in-view preview playback and a fullscreen player
+- **About, Process, Journal, Contact:** minimal, text-light sections
+- **Custom cursor** with contextual labels (View Project, Play Film, Open, Close), disabled on touch devices
+- **Content in data files:** add a project, film or article without touching a component
+- **Accessible:** reduced-motion and keyboard support throughout
+
+## Tech stack
+
+| Area | Tools |
+| --- | --- |
+| Framework | React 18, TypeScript |
+| Build | Vite 5 |
+| Styling | Tailwind CSS 3 |
+| Animation | GSAP (ScrollTrigger) |
+| 3D | Three.js, React Three Fiber, drei |
+| Routing | React Router v6 (HashRouter) |
+| Fonts | Fraunces and Inter (Google Fonts) |
+| Deployment | GitHub Pages |
+
+## Getting started
+
+Requires **Node 18+** (Node 20 is used in the deploy workflow).
 
 ```bash
+git clone https://github.com/aiviainnovations-arch/Portfolio-Website-Elenavoss.git
+cd Portfolio-Website-Elenavoss
+
 npm install
+npm run dev      # local dev server with hot reload
 ```
 
-Requires Node 18+ (Node 20 is used in the deploy workflow).
+| Command | What it does |
+| --- | --- |
+| `npm run dev` | Start the dev server |
+| `npm run build` | Strict TypeScript check (`tsc -b`), then a Vite production build into `dist/` |
+| `npm run preview` | Serve the built `dist/` locally |
+| `npm run lint` | TypeScript check only (`tsc --noEmit`) |
 
-## 3. Development
+## Project structure
 
-```bash
-npm run dev
+```text
+public/
+├── images/             # all still images (and README screenshots)
+├── videos/             # film and video files
+└── media-credits.md    # source and license log for media
+src/
+├── components/         # ResponsiveImage, CinematicVideo, Navbar, Footer,
+│                       # CustomCursor, FullscreenGallery, MagneticButton
+├── sections/           # Hero, SelectedWork, Films, About, Process,
+│                       # Journal, Contact
+├── pages/              # Home.tsx, ProjectCase.tsx (/work/:slug)
+├── three/HeroScene.tsx # the only R3F canvas, lazy-loaded
+├── data/               # projects.ts, films.ts, journal.ts - all content
+└── styles/globals.css  # design tokens and base styles
 ```
 
-Opens a local dev server with hot reload.
+## Customisation
 
-## 4. Production build
+**Replace images.** Every image goes through `<ResponsiveImage />` and is referenced by one path in `src/data/projects.ts`, `films.ts` or `journal.ts` (the hero and about portraits are set in `Hero.tsx` and `About.tsx`). Drop the new file into `public/images/`, update the path, and log it in `public/media-credits.md` if it is licensed stock. Keep a similar aspect ratio so the layout does not shift, and prefer compressed JPG or WebP.
 
-```bash
-npm run build
-npm run preview   # serve the built dist/ locally to sanity-check it
-```
+**Replace videos.** Drop an `.mp4` (H.264, ideally under about 5 MB for a homepage preview) into `public/videos/` and a poster frame into `public/images/`, then update the `src` / `poster` pair in `src/data/films.ts` or the project's `gallery`. `<CinematicVideo />` only plays once a clip scrolls into view and freezes on the poster under reduced motion.
 
-`npm run build` runs a strict TypeScript check (`tsc -b`) before bundling
-with Vite, so type errors fail the build rather than shipping.
-
-## 5. Deploying to GitHub Pages
-
-A workflow is already included at `.github/workflows/deploy.yml`. To use it:
-
-1. Push this project to a GitHub repository.
-2. In **Settings → Pages**, set **Source** to **GitHub Actions**.
-3. If your repository name is **not** `elena-voss-portfolio`, update the
-   `VITE_BASE_PATH` value in both `.github/workflows/deploy.yml` and (for
-   local production builds) pass it as an env var:
-   ```bash
-   VITE_BASE_PATH=/your-repo-name/ npm run build
-   ```
-   Use `VITE_BASE_PATH=/` if you're deploying to a custom domain or a
-   `<username>.github.io` *user/organization* site (not a project site).
-4. Push to `main` — the workflow builds and deploys automatically.
-
-Routing uses React Router's `HashRouter` (URLs like `/#/work/earth-silk`)
-specifically because GitHub Pages has no server-side rewrite rules — a
-plain path-based route would 404 on refresh or direct link. Hash routes
-always resolve to `index.html` first, so deep links and refreshes both
-work under a project-site subpath.
-
----
-
-## 6. Replacing images
-
-Every image goes through the `<ResponsiveImage />` component and is
-referenced by a single path in `src/data/projects.ts`, `films.ts`, or
-`journal.ts` (plus `hero-poster.jpg` and `about.jpg`, referenced directly
-in `Hero.tsx` / `About.tsx`). To swap one:
-
-1. Drop the new file into `public/images/`.
-2. Update the matching `src`/`coverImage` path in `src/data/*.ts` (or in
-   `Hero.tsx` / `About.tsx` for the hero and about portraits).
-3. Log it in `public/media-credits.md` if it's licensed/stock.
-
-Keep roughly the same aspect ratio as the asset you're replacing
-(`coverAspect` / the `aspect` prop) so the layout doesn't shift. Prefer
-compressed JPG/WebP — large unoptimized files will slow the site down.
-
-## 7. Replacing videos
-
-Same pattern, through `<CinematicVideo />`:
-
-1. Drop the `.mp4` (H.264, ideally under ~5MB for a homepage preview)
-   into `public/videos/`, and a matching poster frame into
-   `public/images/`.
-2. Update the `src`/`poster` pair in `src/data/films.ts` or the relevant
-   project's `gallery` array in `src/data/projects.ts`.
-
-`<CinematicVideo />` only starts playback once a clip scrolls into view,
-and freezes on the poster frame entirely when the visitor has
-`prefers-reduced-motion` set — you don't need to change any component
-code when swapping the file.
-
-## 8. Adding a new portfolio project
-
-Add an entry to the `projects` array in `src/data/projects.ts`:
+**Add a project.** Add an entry to the `projects` array in `src/data/projects.ts`:
 
 ```ts
 {
@@ -152,97 +163,57 @@ Add an entry to the `projects` array in `src/data/projects.ts`:
   coverImage: "/images/your-cover.jpg",
   coverAspect: "portrait", // "portrait" | "landscape" | "square"
   gallery: [
-    { type: "image", src: "/images/your-1.jpg", caption: "…" },
+    { type: "image", src: "/images/your-1.jpg", caption: "..." },
     { type: "video", src: "/videos/your-1.mp4", poster: "/images/your-1-poster.jpg" },
   ],
 }
 ```
 
-It will automatically appear in "Selected Work" and get a case-study page
-at `/work/your-project-slug` — no component changes required.
+It appears in Selected Work automatically and gets a case-study page at `/work/your-project-slug`.
 
-## 9. Modifying colours
+**Colours.** Keep two places in sync: `theme.extend.colors` in `tailwind.config.ts` and the `:root` variables in `src/styles/globals.css`. The palette is ivory `#F3EFE7`, sand `#E5DED2`, stone `#C9BCAA`, taupe `#A99178`, clay `#6F6254`, espresso `#403931` and charcoal `#1F1D1A`.
 
-All colours are design tokens in **two** places that should be kept in
-sync:
+**Typography.** Fonts load in `index.html` and map to `font-display` (Fraunces) and `font-sans` (Inter) in `tailwind.config.ts`. To change one, update both.
 
-- `tailwind.config.ts` → `theme.extend.colors` (used as `bg-clay`,
-  `text-charcoal`, etc. throughout the components)
-- `src/styles/globals.css` → the `:root` CSS variables (used for a few
-  raw values, e.g. inside the custom cursor and grain overlay)
+**Contact form.** The form in `src/sections/Contact.tsx` posts `name`, `email` and `message` to `import.meta.env.VITE_CONTACT_ENDPOINT`. With nothing set it shows a simulated success state. To connect a real backend (Formspree, a serverless function and so on), create a `.env` file that is not committed:
 
-The current palette is warm ivory / sand / stone / taupe / clay /
-espresso / charcoal — see the brief's palette section for hex values.
+```bash
+VITE_CONTACT_ENDPOINT=https://your-endpoint.example.com/submit
+```
 
-## 10. Modifying typography
+## How the 3D works
 
-Fonts are loaded in `index.html` (Google Fonts: **Fraunces** for display
-serif headings, **Inter** for UI/sans text) and mapped in
-`tailwind.config.ts` → `theme.extend.fontFamily` as `font-display` /
-`font-sans`. To change either, update both the `<link>` in `index.html`
-and the corresponding `fontFamily` entry.
+`src/three/HeroScene.tsx` is the only React Three Fiber canvas in the project. It renders one textured plane that drifts on a sine wave, tilts toward the cursor with damping for a heavier, gallery-installation feel, and is lazy-loaded so Three.js only downloads for non-touch, motion-enabled visitors who reach the hero. Elsewhere the depth effects (About portrait tilt, project hover states, scroll-scrubbed hero recession) are 2D CSS and GSAP transforms, which keeps the rest of the page fast.
 
-## 11. Connecting the contact form
+## Deploying to GitHub Pages
 
-The form in `src/sections/Contact.tsx` posts to
-`import.meta.env.VITE_CONTACT_ENDPOINT`. With nothing set, it shows a
-simulated (but real UI-complete) success state so the interaction is
-fully demonstrable. To wire it to a real backend (Formspree, a
-serverless function, etc.):
+A GitHub Actions workflow is included in `.github/workflows/`.
 
-1. Create a `.env` file (not committed) with:
+1. Push the project to GitHub.
+2. Go to **Settings → Pages** and set **Source** to **GitHub Actions**.
+3. Make sure `base` in `vite.config.ts` matches your repository name:
+
+   ```ts
+   base: "/Portfolio-Website-Elenavoss/",
    ```
-   VITE_CONTACT_ENDPOINT=https://your-endpoint.example.com/submit
-   ```
-2. The form already `POST`s a `FormData` with `name`, `email`, `message`
-   fields and expects a JSON-friendly `Accept` response — adjust
-   `handleSubmit` in `Contact.tsx` if your endpoint needs a different
-   shape.
 
-## 12. How the 3D system works
+   Use `base: "/"` for a custom domain or a `<username>.github.io` site.
+4. Push to `main`. The workflow builds and deploys automatically.
 
-`src/three/HeroScene.tsx` is the **only** React Three Fiber canvas in the
-project, used once, for the hero. It renders a single textured plane that:
+Routing uses React Router's `HashRouter` (URLs like `/#/work/earth-silk`). GitHub Pages has no server-side rewrites, and hash routes always resolve to `index.html`, so deep links and refreshes work under a project-site subpath.
 
-- drifts gently on a sine wave (idle float),
-- tilts on both axes toward the cursor (damped, not 1:1, for a heavier
-  "art installation" feel rather than a gimmick),
-- is lazy-loaded (`React.lazy`) so the Three.js/R3F bundle is only
-  downloaded when a non-touch, motion-enabled visitor reaches the hero,
-- is swapped for a plain static image automatically on touch devices and
-  when `prefers-reduced-motion` is set.
+## Media credits
 
-Every other "3D-feeling" moment on the site (the About portrait's tilt,
-project-row hover states, scroll-scrubbed hero recession) is 2D CSS/GSAP
-transforms, not WebGL — kept deliberately light so the rest of the page
-stays fast, per the brief's "3D should enhance the photography, not be
-everywhere" direction.
+The hero, about portrait, journal thumbnails and most project covers use freely licensed Unsplash photography, referenced by CDN URL. Supporting gallery imagery and all videos are procedurally generated placeholders. Full photographer and license details are in [`public/media-credits.md`](public/media-credits.md). Only use media you have rights to when replacing them.
+
+## License
+
+Released under the [MIT License](LICENSE). Third-party media, including Unsplash photography, remains under its own license.
 
 ---
 
-## A note on how this build was produced
+<div align="center">
 
-This project was generated in a sandboxed environment with **no general
-internet access for downloading files** (no `npm install`, no fetching
-binary assets into the repo), which affects two things a reviewer should
-know:
+Designed and built by **Aivia Innovations**. Elena Voss is a fictional concept.
 
-- **Photography:** the hero, about portrait, journal thumbnails and 5 of
-  the 6 project covers now use real, freely-licensed photography from
-  Unsplash, referenced by direct CDN URL (`images.unsplash.com`) rather
-  than downloaded — the sandbox couldn't write binary files fetched from
-  the web, but it could reach Unsplash's own search/API surface to find
-  and verify individually-licensed, "free to use" photos. See
-  `public/media-credits.md` for the full photographer/photo credit list.
-  Everything else — supporting gallery imagery and every video — is still
-  an original, procedurally-generated placeholder (FFmpeg gradient/grain
-  plates), because no equivalent free hotlinkable video source could be
-  reliably sourced the same way. Swapping any of it for your own
-  photography or footage is a one-line change — see §6–7 above.
-- **Dependencies:** `npm install` could not be run here, so this build
-  has not been compiled or opened in a browser in this environment. The
-  code was written by hand against the documented APIs of React 18,
-  React Router 6, GSAP 3, Tailwind 3, Three.js and React Three Fiber, and
-  `npm run build` runs a full TypeScript check — but you should run
-  `npm install && npm run build` yourself as a first step, and treat that
-  as part of reviewing this deliverable rather than a formality.
+</div>
